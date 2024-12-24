@@ -3,6 +3,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const downloadController = require("./controllers/downloadController");
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
@@ -48,6 +49,15 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *       500:
  *         description: Erro ao processar o download
  */
+
+// Configurar o Express para servir arquivos estáticos da pasta 'public'
+app.use(express.static(path.join(__dirname, "public")));
+
+// Rota para servir o index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 app.get("/download", (req, res) => {
   const queryObject = url.parse(req.url, true).query;
   const videoUrl = queryObject.url;
