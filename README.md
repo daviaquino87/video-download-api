@@ -45,6 +45,10 @@ A documentação interativa da API está disponível através do Swagger UI. Par
 
 http://localhost:3000/api-docs
 
+O front-end do projeto está disponível. Para acessá-la, basta visitar:
+
+http://localhost:3000
+
 ## 👨🏼‍💻 Tecnologias
 
 As seguintes tecnologias foram usadas para o desenvolvimento desta API:
