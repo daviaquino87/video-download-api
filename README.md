@@ -11,14 +11,15 @@ ___
 - *Download de vídeos*: Faça o download de vídeos do YouTube facilmente.
 
 ## 🛠️ Pré-requisitos
-* Possuir docker na maquina
+* Possuir NodeJS na maquina
+* Possuir npm na maquina
 
 ## 🎲 Rodando o Backend
 
 ###  Primeiro, clone o repositório para a sua máquina local:
 
 ```bash
-git clone https://github.com/seu-usuario/video-download-api.git
+git clone https://github.com/daviaquino87/video-download-api
 
 cd video-download-api
 ```
