@@ -10,52 +10,6 @@ ___
 
 - *Download de vídeos*: Faça o download de vídeos do YouTube facilmente.
 
-## 🛠️ Pré-requisitos
-* Possuir NodeJS na maquina
-* Possuir npm na maquina
+# 🚧 Documentação em andamento!...🚧
 
-## 🎲 Rodando o Backend
-
-###  Primeiro, clone o repositório para a sua máquina local:
-
-```bash
-git clone https://github.com/daviaquino87/video-download-api
-
-cd video-download-api
-```
-
-### Instale as dependências do projeto:
-
-```bash
-npm install
-```
-
-### Rodar a Aplicação
-
- ```bash
-npm run start
-```
-
-Por padrão, o servidor estará rodando na porta 3000.
-
-
-## 🌐 Acessando a Documentação
-
-A documentação interativa da API está disponível através do Swagger UI. Para acessá-la, basta visitar:
-
-http://localhost:3000/api-docs
-
-O front-end do projeto está disponível. Para acessá-la, basta visitar:
-
-http://localhost:3000
-
-## 👨🏼‍💻 Tecnologias
-
-As seguintes tecnologias foram usadas para o desenvolvimento desta API:
-
-- [Node.js](https://nodejs.org/docs/latest/api/): Ambiente de execução JavaScript no backend.
-- [ytdl-core](https://github.com/distubejs/ytdl-core): Biblioteca para download de vídeos do YouTube.
-- [FFmpeg](https://ffmpeg.org/ffmpeg.html): Ferramenta para manipulação e conversão de áudio e vídeo.
-- [Swagger](https://swagger.io/docs/): Documentação interativa da API.
-
-
+![imagem ilustrativa](https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276149534/8067393b3b9043126b9311e395555e3e-3cd14e3ccbf406188b17084381222780-1024-1024-mnl1r75g01.jpg)
