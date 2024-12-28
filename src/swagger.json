@@ -1,0 +1,38 @@
+[
+  {
+    "path": "/download",
+    "method": "get",
+    "summary": "Download video from a given URL",
+    "parameters": [
+      {
+        "name": "url",
+        "in": "query",
+        "description": "The URL of the video to download",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "https://www.youtube.com/watch?v=video_id"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Video file",
+        "content": {
+          "video/mp4": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request - Invalid URL"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  }
+]
