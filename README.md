@@ -10,6 +10,30 @@ ___
 
 - *Download de vídeos*: Faça o download de vídeos do YouTube facilmente.
 
-# 🚧 Documentação em andamento!...🚧
+## 🛠️ Pré-requisitos
+* Possuir docker na maquina
 
-![imagem ilustrativa](https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276149534/8067393b3b9043126b9311e395555e3e-3cd14e3ccbf406188b17084381222780-1024-1024-mnl1r75g01.jpg)
+## 🎲 Rodando o Backend
+
+###  Primeiro, clone o repositório para a sua máquina local:
+
+```bash
+git clone https://github.com/daviaquino87/video-download-api
+
+cd video-download-api
+```
+
+### Execute o projeto com docker:
+
+```bash
+docker-compose up -d
+```
+
+Por padrão, o servidor estará rodando na porta 3000.
+
+## 👨🏼‍💻 Tecnologias
+
+As seguintes tecnologias foram usadas para o desenvolvimento desta API:
+
+- [Node.js](https://nodejs.org/docs/latest/api/): Ambiente de execução JavaScript no backend.
+- [ytdl-core](https://github.com/distubejs/ytdl-core): Biblioteca para download de vídeos do YouTube.
