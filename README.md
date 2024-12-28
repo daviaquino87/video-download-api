@@ -46,3 +46,7 @@ As seguintes tecnologias foram usadas para o desenvolvimento desta API:
 - [Swagger](https://swagger.io/docs/): Ferramenta para documentação e especificação de APIs RESTful, permitindo a criação de documentação interativa.
 - [TypeScript](https://www.typescriptlang.org/docs/): Superset do JavaScript, adicionando tipagem estática e melhorando a manutenção e a qualidade do código.
 - [Docker](https://docs.docker.com/): Plataforma para automatizar a execução de aplicações dentro de containers, garantindo consistência no ambiente de desenvolvimento e produção.
+
+## ⚠️ Observação
+
+Por utilizar uma biblioteca externa (@distube/ytdl-core), pode ocorrer o erro 403 ao tentar baixar um vídeo, especialmente em momentos em que há mudanças nas permissões de acesso ou bloqueios no YouTube.
