@@ -7,8 +7,6 @@ export const verifyError: ErrorRequestHandler = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log("\n\n\n CAIU AQUI");
-
   if (err instanceof InternalError) {
     const { code, message } = err;
     res.status(code).json({ message });

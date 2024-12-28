@@ -4,16 +4,46 @@ services:
   minio:
     image: minio/minio
     container_name: minio
+    networks:
+      - youtube-downloader
     environment:
-      MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: minio123
+      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY}
+      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_KEY}
+      MINIO_BUCKETS: ${STORAGE_DEFAULT_BUCKET_NAME}
     ports:
       - "9000:9000"  # Porta da API
       - "9001:9001"  # Porta da UI do MinIO
     volumes:
       - minio-data:/data
     command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  app:
+    build:
+      context: .
+    container_name: youtube-downloader
+    networks:
+      - youtube-downloader
+    volumes:
+      - .:/home/node/app
+      - app-data:/home/node/app-data  # Volume nomeado para persistência de dados
+    ports:
+      - "3000:3000"
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: "sh ./.docker/entrypoint.sh"
 
 volumes:
   minio-data:
     driver: local
+  app-data:
+    driver: local
+
+networks:
+  youtube-downloader:
+    driver: bridge

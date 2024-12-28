@@ -35,26 +35,29 @@ export class MinioStorage implements IStorage {
       useSSL,
     });
 
-    (async () => {
-      const exists = await this.verifyBucketExists(defaultBucketName);
-
-      if (!exists) {
-        await this.createBucket(defaultBucketName);
-      }
-    })();
+    this.ensureBucketExists(defaultBucketName);
   }
+
+  private async ensureBucketExists(bucketName: string): Promise<void> {
+    const exists = await this.client.bucketExists(bucketName);
+    if (!exists) {
+      await this.client.makeBucket(bucketName);
+      console.log(`Bucket '${bucketName}' criado com sucesso.`);
+    } else {
+      console.log(`Bucket '${bucketName}' já existe.`);
+    }
+  }
+
   async verifyBucketExists(bucketName: string): Promise<boolean> {
     const exists = await this.client.bucketExists(bucketName);
-
-    if (exists) {
-      return true;
-    }
-
-    return false;
+    return exists;
   }
 
   async createBucket(bucketName: string): Promise<void> {
-    await this.client.makeBucket(bucketName);
+    const exists = await this.verifyBucketExists(bucketName);
+    if (!exists) {
+      await this.client.makeBucket(bucketName);
+    }
   }
 
   async uploadFile({
