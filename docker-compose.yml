@@ -23,14 +23,13 @@ services:
       retries: 5
 
   app:
-    build:
-      context: .
+    build: .
+    user: node
     container_name: youtube-downloader
     networks:
       - youtube-downloader
     volumes:
       - .:/home/node/app
-      - app-data:/home/node/app-data  # Volume nomeado para persistência de dados
     ports:
       - "3000:3000"
     depends_on:
