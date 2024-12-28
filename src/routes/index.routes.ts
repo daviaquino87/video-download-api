@@ -3,33 +3,21 @@ import { DownloadController } from "../controllers/download.controller";
 import { DownloadVideoUseCase } from "../use-cases/download-video.usecase";
 import { YtdlDownloadService } from "../services/ytdl-download.service";
 import { MinioStorage } from "../storage/minio/minio.storage";
-import { env } from "../config/env.config";
-import { InternalError } from "../errors/internal-error";
+import { RemoveFileFromStorageUseCase } from "../use-cases/remove-file-from-storage.usecase";
 
 export const indexRoutes = Router();
 
-const storageService = new MinioStorage({
-  endPoint: env.STORAGE_ENDPOINT,
-  accessKey: env.STORAGE_ACCESS_KEY,
-  secretKey: env.STORAGE_SECRET_KEY,
-  port: env.STORAGE_PORT,
-  useSSL: env.STORAGE_USE_SSL,
-  defaultBucketName: env.STORAGE_DEFAULT_BUCKET_NAME,
-});
-
+const storageService = MinioStorage.getInstance();
 const downloadService = new YtdlDownloadService(storageService);
-
-const downloadVideoUseCase = new DownloadVideoUseCase(
-  downloadService,
+const removeFileFromStorageUseCase = new RemoveFileFromStorageUseCase(
   storageService
 );
 
-const downloadController = new DownloadController(downloadVideoUseCase);
+const downloadController = new DownloadController(
+  new DownloadVideoUseCase(downloadService, storageService),
+  removeFileFromStorageUseCase
+);
 
 indexRoutes.get("/download", (req, res) =>
   downloadController.handler(req, res)
 );
-
-indexRoutes.get("/", (req, res) => {
-  throw new InternalError("Teste", 404);
-});

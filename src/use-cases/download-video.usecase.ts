@@ -10,6 +10,7 @@ interface IExecuteInput {
 interface IExecuteOutput {
   stream: NodeJS.ReadableStream;
   fileName: string;
+  videoPath: string;
 }
 
 export class DownloadVideoUseCase
@@ -32,6 +33,6 @@ export class DownloadVideoUseCase
       fileName: videoPath,
     });
 
-    return { stream, fileName };
+    return { stream, fileName, videoPath };
   }
 }

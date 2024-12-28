@@ -18,8 +18,9 @@ interface IStorageParams {
 
 export class MinioStorage implements IStorage {
   private client: Client;
+  private static instance: MinioStorage | null = null;
 
-  constructor({
+  private constructor({
     accessKey,
     endPoint,
     port,
@@ -36,6 +37,21 @@ export class MinioStorage implements IStorage {
     });
 
     this.ensureBucketExists(defaultBucketName);
+  }
+
+  public static getInstance(): MinioStorage {
+    if (!MinioStorage.instance) {
+      MinioStorage.instance = new MinioStorage({
+        accessKey: env.STORAGE_ACCESS_KEY,
+        endPoint: env.STORAGE_ENDPOINT,
+        port: env.STORAGE_PORT,
+        secretKey: env.STORAGE_SECRET_KEY,
+        useSSL: env.STORAGE_USE_SSL,
+        defaultBucketName: env.STORAGE_DEFAULT_BUCKET_NAME,
+      });
+    }
+
+    return MinioStorage.instance;
   }
 
   private async ensureBucketExists(bucketName: string): Promise<void> {

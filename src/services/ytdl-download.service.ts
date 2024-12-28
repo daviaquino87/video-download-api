@@ -106,14 +106,6 @@ export class YtdlDownloadService implements IDownload {
       const totalSize = Number(format.contentLength);
       let downloadedSize = 0;
 
-      ytdlStream.on("data", (chunk: Buffer) => {
-        downloadedSize += chunk.length;
-        const progress = ((downloadedSize / totalSize) * 100).toFixed(2);
-        console.log(
-          `Progresso do download: ${progress}% (${downloadedSize}/${totalSize} bytes)`
-        );
-      });
-
       ytdlStream.on("error", (error: Error) => {
         console.error("Erro ao baixar o vídeo:", error);
         throw new InternalError("Falha ao baixar o vídeo.", 503);
