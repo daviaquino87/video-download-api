@@ -23,6 +23,12 @@ git clone https://github.com/daviaquino87/video-download-api
 cd video-download-api
 ```
 
+###  Segundo, faça uma copia do arquivo env:
+
+```bash
+cp .env.example .env
+```
+
 ### Execute o projeto com docker:
 
 ```bash
